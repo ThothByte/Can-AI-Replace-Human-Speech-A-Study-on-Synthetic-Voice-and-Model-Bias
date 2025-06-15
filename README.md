@@ -1,6 +1,13 @@
-# Can-AI-Replace-Human-Speech: A Study on Synthetic Voice and Model Bias
+# Can AI Replace Human Speech: A Study on Synthetic Voice and Model Bias
 
-This repository contains the dataset and code used in the paper **"Can AI Replace Human Speech?"**. The project explores synthetic voice generation and model bias.
+This repository contains the dataset and code used in the paper **"Can AI Replace Human Speech: A Study on Synthetic Voice and Model Bias"**. The project explores synthetic voice generation and model bias.
+
+
+## Download
+First download the common voice dataset from https://commonvoice.mozilla.org/en/datasets
+
+This project will require you to have multiple venv, as the all libaries will not work for the same version
+
 
 ## How to Use
 
@@ -65,3 +72,6 @@ To generate metrics for hate speech, run:
 python3 data.py -type hate -file ../dataset/hate.json
 ```
 For non-hate speech, change -type hate to -type nonhate and point to the nonhate data file.
+
+
+
