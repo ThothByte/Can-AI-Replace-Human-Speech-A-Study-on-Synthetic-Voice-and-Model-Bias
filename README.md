@@ -4,7 +4,8 @@ This repository contains the dataset and code used in the paper **"Can AI Replac
 
 
 ## Download
-First download the common voice dataset from https://commonvoice.mozilla.org/en/datasets
+First download the common voice dataset from https://commonvoice.mozilla.org/en/datasets, we used the version 21. 
+Please save this dataset into a datasets folder, if you using the version 21 call it folder cv-corpus-21.0-2025-03-14
 
 This project will require you to have multiple venv, as the all libaries will not work for the same version
 
