@@ -108,6 +108,7 @@ By default after running the code one will have the following structure
 │   └── nonhate
 │       ├── edge-tts
 │       ├── vits
+│       ├── human
 │       └── ST5
 │
 ├── audioFilesClean
@@ -119,7 +120,7 @@ By default after running the code one will have the following structure
 │   └── nonhate
 │       ├── edge-tts
 │       ├── vits
-│   │   ├── human
+│       ├── human
 │       └── ST5
 │
 ├── transcript
