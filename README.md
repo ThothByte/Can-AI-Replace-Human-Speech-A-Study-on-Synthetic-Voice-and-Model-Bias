@@ -70,6 +70,7 @@ You can change the transcription model to one of the following:
     deepspeech-scorer
 
 For non-hate speech, replace -type hate with -type nonhate and point to the nonhate data file.
+
 4. Verify the Data
 
 To ensure all files were created correctly, run:
