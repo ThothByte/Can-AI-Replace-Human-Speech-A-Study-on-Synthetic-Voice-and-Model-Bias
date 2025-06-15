@@ -103,6 +103,7 @@ By default after running the code one will have the following structure
 │   ├── hate
 │   │   ├── edge-tts
 │   │   ├── vits
+│   │   ├── human
 │   │   └── ST5
 │   └── nonhate
 │       ├── edge-tts
@@ -113,10 +114,12 @@ By default after running the code one will have the following structure
 │   ├── hate
 │   │   ├── edge-tts
 │   │   ├── vits
+│   │   ├── human
 │   │   └── ST5
 │   └── nonhate
 │       ├── edge-tts
 │       ├── vits
+│   │   ├── human
 │       └── ST5
 │
 ├── transcript
