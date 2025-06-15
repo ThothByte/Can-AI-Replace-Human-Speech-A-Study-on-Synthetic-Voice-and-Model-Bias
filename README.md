@@ -8,6 +8,7 @@ First download the common voice dataset from https://commonvoice.mozilla.org/en/
 
 This project will require you to have multiple venv, as the all libaries will not work for the same version
 
+Also download the vosk-small (vosk-model-small-en-us-0.15) and vosk-giga (vosk-model-en-us-0.42-gigaspeech) models and store them in the models folder
 
 ## How to Use
 
@@ -32,6 +33,16 @@ For non-hate speech, simply change the -type to nonhate and point to the nonhate
 ```bash
 python3 main.py -type nonhate -file ../dataset/nonhate.json -method create -model edge-tts
 ```
+
+Get human dataset
+
+```bash
+python3 getHuman.py -file ../dataset/hate.json
+```
+
+and change the file for nonhate
+
+
 2. Convert MP3 to WAV
 
 Once the data is created, convert all MP3 files to WAV format by running:
@@ -73,5 +84,70 @@ python3 data.py -type hate -file ../dataset/hate.json
 ```
 For non-hate speech, change -type hate to -type nonhate and point to the nonhate data file.
 
+6. Detoxify deviation
+To see the deviation of detoxify results run
+```bash
+python3 transcribeToHate.py -type hate
+```
+This will return the results for each of the possible options in the hate folder and output them in the textClassificationOut Folder.
+Change to nonhate for nonhate option
+
+# Structure
+By default after running the code one will have the following structure 
+```
+├── Scripts
+├── models
+├── audioFiles
+│   ├── hate
+│   │   ├── edge-tts
+│   │   ├── vits
+│   │   └── ST5
+│   └── nonhate
+│       ├── edge-tts
+│       ├── vits
+│       └── ST5
+│
+├── audioFilesClean
+│   ├── hate
+│   │   ├── edge-tts
+│   │   ├── vits
+│   │   └── ST5
+│   └── nonhate
+│       ├── edge-tts
+│       ├── vits
+│       └── ST5
+│
+├── transcript
+|   ├── hate
+│   │   ├── deepSpeech
+│   │   ├── deepSpeech-Scorer
+│   │   ├── Vosk-giga
+│   │   ├── Vosk-small
+│   │   ├── WhisperX
+│   │   └── WhisperX-Align
+│   └── nonhate
+│       ├── deepSpeech
+│       ├── deepSpeech-Scorer
+│       ├── Vosk-giga
+│       ├── Vosk-small
+│       ├── WhisperX
+│       └── WhisperX-Align
+│
+└── textClassificationOut
+    ├── hate
+    │   ├── deepSpeech
+    │   ├── deepSpeech-Scorer
+    │   ├── Vosk-giga
+    │   ├── Vosk-small
+    │   ├── WhisperX
+    │   └── WhisperX-Align
+    └── nonhate
+        ├── deepSpeech
+        ├── deepSpeech-Scorer
+        ├── Vosk-giga
+        ├── Vosk-small
+        ├── WhisperX
+        └── WhisperX-Align
+```
 
 
