@@ -13,7 +13,7 @@ class WhisperXC:
 			self.batch_size = 16 # reduce if low on GPU mem
 			compute_type = "int8" # change to "int8" if low on GPU mem (may reduce accuracy)
 			if(allignText == True):
-				self.name = "WHISPERX-Allign"
+				self.name = "WHISPERX-Align"
 			# 1. Transcribe with original whisper (batched)
 			self.model = whisperx.load_model("base", self.device, compute_type=compute_type, language="en")
 		except Exception as e:

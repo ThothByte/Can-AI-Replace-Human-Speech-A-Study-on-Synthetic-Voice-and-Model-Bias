@@ -2,32 +2,30 @@ import json
 
 import clean
 
-fP = "./out/nonhate-full-.8.json"
-#fP = "./out/hate.json"
+
+
+import argparse
+
+# Create the parser
+parser = argparse.ArgumentParser(description="A script that handles -size and -type arguments.")
+
+# Define the arguments with their default values
+parser.add_argument('-file', type=str, default='hate.json', help="location of the hate or non-hate file (default: hate.json)")
+parser.add_argument('-type', type=str, default='hate', choices=['hate', 'nonhate'], help="Type of data (default: 'hate').")
+parser.add_argument('-stats', type=str, default='global', help="Choose either global or inter gender metrics")
+
+# Parse the arguments
+args = parser.parse_args()
+
+fP = args.file
 data = {}
 import os
-
-if(1 == 2):
-	for filename in os.listdir(fP):
-		file_path = os.path.join(fP, filename)
-
-		# Check if it's a file (not a subdirectory)
-		if os.path.isfile(file_path):
-			with open(file_path, 'r', encoding='utf-8') as file:
-				content = file.read()
-				data[filename.replace(".txt","")] = {"text": clean.clean(content)}
-				#print(data)
-				file.close()
-
-	dataO = open("stromfront.json","w+")
-	dataO.write(json.dumps(data))
-	dataO.close()
 
 dataO = open(fP,"r+")
 data = json.loads("".join(dataO.readlines()))
 dataO.close()
 
-gender = {"en_US_AriaNeural" : "female", "en_US_ChristopherNeural" : "male", "vits/p225" : "female", "vits/p229" : "male", "ST5/bdl" : "male",  "ST5/clb" : "female", "ST5/clb-new" : "female", "edge/en_US_AriaNeural" : "female", "edge/en_US_ChristopherNeural" : "male", "human/male" : "male", "human/female" : "female"}
+gender = {"en_US_AriaNeural" : "female", "en_US_ChristopherNeural" : "male", "vits/p225" : "female", "vits/p229" : "male", "ST5/bdl" : "male",  "ST5/clb" : "female", "edge/en_US_AriaNeural" : "female", "edge/en_US_ChristopherNeural" : "male", "human/male" : "male", "human/female" : "female"}
 
 
 from collections import Counter
@@ -105,7 +103,12 @@ def numbers_to_words(text):
     return re.sub(r'\b\d+\b', replace_number, text)
 
 showRaw = False
-returnGlobal = True
+
+if(args.stats.lower() == "global"):
+	returnGlobal = True
+else:
+	returnGlobal = False
+
 showInfo = False
 
 
@@ -390,9 +393,14 @@ def read_files_with_prefix(directory, prefix):
 					contents.append(file.read())
 	contents = "".join(contents)[0:len("".join(contents))-2]
 	return json.loads("{" + contents + "}"), directory
-types = ["nonhate"]
-options = ["WHISPERX","WHISPERX-Allign","Vosk-giga", "Vosk-small", "deepSearch","deepSearch-Scorer"]
-#options = ["deepSearch"]
+
+
+
+
+
+types = [args.type]
+options = ["WHISPERX","WHISPERX-Align","Vosk-giga", "Vosk-small", "deepSpeech","deepSpeech-Scorer"]
+
 for t in types:
 	total = ""
 	for option in options:
@@ -415,8 +423,7 @@ for t in types:
 
 		b = compare(f1Lines,f2Lines)
 		b = list(b)
-		#exit()
-		#input()
+
 		f1Lines, d1 = (read_files_with_prefix("../transcript/" + str(t) + "/" + option + "/","p225"))
 		f2Lines, d2 = (read_files_with_prefix("../transcript/" + str(t) + "/" + option + "/","p229"))
 
@@ -426,29 +433,8 @@ for t in types:
 		f2Lines, d2 = (read_files_with_prefix("../transcript/" + str(t) + "/" + option + "/","male"))
 
 		d = compare(f1Lines,f2Lines)
-		#input()
-		#print("RESULTS FOR OPTION",option)
-		#print("\n".join(a))
-		#print("\\\\")
-		#print("\n".join(b))
-		#print("\\\\")
-		#print("\n".join(c))
-		#print("\\\\")
 		total += "\t\n".join(a) + "\\\\\n" + "\t\n".join(b) + "\\\\\n" + "\t\n".join(c) + "\\\\\n" + "\t\n".join(d) + "\\\\\n" 
 		total += "\midrule\n"
-		#print("\n".join(d).replace("-nonhate",""))
-		#input() 
+
 	print(total)
-	input()
-exit()
 
-
-f1 = open("../transcript/WHISPERX/bdl.json","r")
-f2 = open("../transcript/WHISPERX/clb.json","r")
-
-f1Lines, d1 = json.loads("{" + "".join(f1.readlines())[0:len("".join(f1.readlines()))-2] + "}")
-f2Lines, d2 = json.loads("{" + "".join(f2.readlines())[0:len("".join(f2.readlines()))-2] + "}")
-
-f1.close()
-f2.close()
-compare(f1Lines,f2Lines)

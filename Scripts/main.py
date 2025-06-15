@@ -396,7 +396,7 @@ def transcriptMan(fP, voice, f, model):
 		w1 = STTMan.Vosk("Vosk-small", "vosk-model-small-en-us-0.15")
 	elif(model.lower() == "vosk-giga"):
 		from vosk import Model, KaldiRecognizer
-		w1 = STTMan.Vosk("Vosk-small", "vosk-model-en-us-0.42-gigaspeech")
+		w1 = STTMan.Vosk("Vosk-giga", "vosk-model-en-us-0.42-gigaspeech")
 	elif(model.lower() == "deepspeech"):
 		import deepspeech
 		w1 = STTMan.DeepSearch(False)
