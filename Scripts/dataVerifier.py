@@ -7,7 +7,7 @@ def count_files_in_directory(directory):
 	return int(result.stdout.strip())
 
 print("AUDIO FILE")
-o = ["nonhate"]
+o = ["nonhate","hate"]
 for x in o:
 	edge_male = count_files_in_directory("../audioFiles/"+x+"/edge/en_US_AriaNeural")
 	edge_female = count_files_in_directory("../audioFiles/"+x+"/edge/en_US_ChristopherNeural")

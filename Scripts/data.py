@@ -7,7 +7,7 @@ import clean
 import argparse
 
 # Create the parser
-parser = argparse.ArgumentParser(description="A script that handles -size and -type arguments.")
+parser = argparse.ArgumentParser(description="File for getting datastats")
 
 # Define the arguments with their default values
 parser.add_argument('-file', type=str, default='hate.json', help="location of the hate or non-hate file (default: hate.json)")
